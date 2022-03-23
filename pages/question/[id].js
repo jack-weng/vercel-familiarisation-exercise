@@ -1,9 +1,9 @@
-import { server } from '../../config'
 import Link from 'next/link'
 import Meta from '../../components/Meta'
 import questionStyles from '../../styles/Question.module.css'
 import ReactStars from "react-rating-stars-component";
 import React from "react";
+import { questions } from '../../questions'
 
 
 const question = ({ question }) => {
@@ -72,10 +72,8 @@ const question = ({ question }) => {
 }
 
 export const getStaticProps = async (context) => {
-  const res = await fetch(`${server}/api/questions/${context.params.id}`)
-
-  const question = await res.json()
-
+  const filtered = questions.filter((question) => question.id === context.params.id)
+  const question = filtered[0]
   return {
     props: {
       question,
@@ -84,10 +82,6 @@ export const getStaticProps = async (context) => {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/questions`)
-
-  const questions = await res.json()
-
   const ids = questions.map((question) => question.id)
   const paths = ids.map((id) => ({ params: { id: id.toString() } }))
 
