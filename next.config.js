@@ -5,7 +5,7 @@ const nextConfig = {
     { 
       source: '/hello-vercel',
       destination: 'https://vercel.com',
-      permanent: false,
+      permanent: true,
     }
   ]
 }
