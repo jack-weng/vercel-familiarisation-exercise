@@ -7,4 +7,5 @@ export default function handler(req, res) {
     fs.writeFileSync('ratings.json', JSON.stringify(ratings, null, 4));
     return res.status(200).json({});
   }
+  res.status(200).json(ratings)
 }
