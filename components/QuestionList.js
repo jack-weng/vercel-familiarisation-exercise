@@ -5,7 +5,7 @@ const QuestionList = ({ questions }) => {
   return (
     <div className={questionStyles.grid}>
       {questions.map((question) => (
-        <QuestionItem question={question} />
+        <QuestionItem question={question} key={question.id}/>
       ))}
     </div>
   )
