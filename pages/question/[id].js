@@ -5,17 +5,15 @@ import questionStyles from '../../styles/Question.module.css'
 import ReactStars from "react-rating-stars-component";
 import React from "react";
 
-
 const question = ({ question }) => {
   const ratingChanged = (newRating) => {
-    let data = { 'questionID': question.id,'rating': newRating }
+    let data = { 'questionID': parseInt(question.id), 'rating': newRating }
 
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(data)
     };
-    fetch(`${server}/api/rate`, requestOptions)
+    fetch(`${server}/api/rates`, requestOptions)
   };
 
   return (
